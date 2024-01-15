@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-danger">
+  <a class="navbar-brand" href="/">School Store</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+
+      <li class="nav-item">
+        {% if user.is_authenticated %}
+        <li> Hai  {{user.username}}</li>
+        <a class="nav-link" href="{% url 'store_app:logout' %}">Logout</a>
+         {% else %}
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'store_app:register' %}">Register</a>
+        {% endif %}
+      </li>
+
+      <li class="nav-item dropdown {% if 'store_app' in request.path %} active {% endif %}">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+         Departments
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+
+          <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Commerce">Commerse</a></li>
+          <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Engineering"> Engineering</a></li>
+          <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Outline_of_health_sciences">Health Science</a></li>
+          <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Computer_science">Computer science </a></li>
+          <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Electronics">Electronics</a></li>
+          <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Design#Design_and_art">Art and Design</a></li>
+
+
+        </div>
+      </li>
+    </ul>
+  </div>
+<a class="btn btn-success" href="{% url 'store_app:login' %}">login</a>
+</nav>
+
+

@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fill form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<h1 class="text-center">Fill the Form</h1>
+<hr>
+<div class="container w-25 text-center p-3 bg-warning">
+<body>
+<form  method="post">
+    {% csrf_token %}
+
+<hr>
+    <label>Name</label>
+    <input type="text" name="name"><br>
+    <label>Date Of Birth</label>
+    <input type="date"  name="dob"><br>
+    <label>Age</label>
+    <input type="number"  name="age"><br>
+    <label>Gender</label>
+    <input type="radio" name="gender" value="male">Male
+    <input type="radio" name="gender" value="female">Female
+    <input type="radio"  name="gender" value="female">Trasgender <br>
+    <label>Phone Number</label>
+    <input type="text"  name="phone"><br>
+    <label>Email Id</label>
+    <input type="email"  name="email"><br>
+    <label>Address</label>
+    <textarea id="address" name="address"></textarea><br>
+
+
+
+      <div class="form-group " style="margin-top: 25px;">
+      <label>Select Department</label>
+          <select style="margin-top: 25px;" class="form-control selectpicker" id="firstDropdown">
+      <option value="1"> Choose Department</option>
+      <option value="2"> Computer Science</option>
+      <option value="3">Commerce</option>
+      <option value="4">Engineering</option>
+      <option value="5">Art and Design</option>
+      <option value="6">Health Science</option>
+  </select>
+</div>
+
+
+<div class="form-group" style="margin-top: 25px;">
+   <label>Select Course</label>
+     <select style="margin-top: 25px;" class="form-control selectpicker" id="secondDropdown">
+     <option value="2">BCA</option>
+     <option value="2">MCA</option>
+     <option value="2">Bsc Computer Science</option>
+     <option value="3">Bba</option>
+      <option value="3">MBA</option>
+      <option value="3">Bcom</option>
+      <option value="3">Mcom</option>
+      <option value="4">EEE</option>
+      <option value="4">ECE</option>
+      <option value="4">CSE</option>
+  </select>
+</div>
+    <div class="form-group" style="margin-top: 25px;">
+  <label>Select Purpose</label>
+  <select style="margin-top: 25px;"  class="form-control selectpicker"  >
+    <option value="1">For Enquiry</option>
+    <option value="2">For Return</option>
+     <option value="3">Place Order</option>
+
+
+  </select>
+</div>
+      <label style="margin-top: 25px;">Materials Provided</label><br>
+
+    <label> Notebook</label>
+      <input type="checkbox" name="notebook" value="Notebook"><br>
+    <label> Pen</label>
+      <input type="checkbox" name="pen" value="pen"><br>
+    <label>Exam Pappers</label>
+      <input type="checkbox" id="pappers" name="pappers" value="pappers"><br>
+
+
+<a class="btn btn-success">Submit</a>
+</form>
+
+{% for msg in messages %}
+<h3>{{msg}}</h3>
+{% endfor %}
+
+<hr>
+<br>
+<a class="btn btn-danger" href="{% url 'store_app:home' %}">logout</a>
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js">
+</script>
+<script>
+  $(document).ready(function() {
+    $("#firstDropdown").change(function() {
+
+      var selectedValue = $(this).val();
+
+
+      if (selectedValue == "2")
+      {
+        $("#secondDropdown").html("<option value='2'>BCA</option><option value='2'>MCA</option><option value='2'>Bsc Computer Science</option>");
+      }
+       else if (selectedValue == "3")
+       {
+        $("#secondDropdown").html("<option value='3'>BBA</option><option value='3'>MBA</option><option value='3'>Bcom</option><option value='3'>Mcom</option>");
+      }
+       else if (selectedValue == "4")
+       {
+        $("#secondDropdown").html("<option value='4'>EEE</option><option value='4'>ECE</option><option value='4'>CSE</option><option value='3'>Mcom</option>");
+      }
+    });
+  });
+</script>
+</div>
+</body>
+</html>
+{% endblock %}
